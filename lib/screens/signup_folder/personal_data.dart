@@ -39,6 +39,7 @@ class _PersonalDataState extends State<PersonalData> {
             controller: genderTextController,
             onTap: () {
               setState(() {
+                genderTextController.text = 'Not selected';
                 showSelection = true;
               });
             },
@@ -71,7 +72,7 @@ class _PersonalDataState extends State<PersonalData> {
             ),
           ),
         ),
-        SizedBox(
+        showSelection?SizedBox(
           width: 328.w,
           height: 200.h,
           child: Card(
@@ -104,7 +105,7 @@ class _PersonalDataState extends State<PersonalData> {
               ),
             ),
           ),
-        ),
+        ):const SizedBox.shrink(),
         CreatedTextFields(
           width: 328,
           height: 63.h,

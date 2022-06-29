@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:interview_question/screens/login_screen.dart';
 import 'package:interview_question/widgets/purple_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import '../widgets/carousel_widget.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -15,7 +14,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   int index = 0;
-  final CarouselController _carouselController = CarouselController();
+  final PageController _pageController = PageController();
   final List<Widget> myWidgets = const [
     CarouselWidget(
       headerText: 'Join the best\n tailoring app',
@@ -54,22 +53,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 color: Colors.white.withOpacity(0.3748),
                 child: Padding(
                   padding: EdgeInsets.only(top: 52.h),
-                  child: CarouselSlider(
-                    carouselController: _carouselController,
-                    options: CarouselOptions(
-                      height: 375.h,
-                      onPageChanged: (index, carouselPageChangedReasons) {
-                        setState(() {
-                          // this.index++;
-                          this.index = index;
-                          if (index > 3) {
-                            this.index = 0;
-                          }
-                        });
-                      },
-                    ),
-                    items: myWidgets,
-                  ),
+                  child: PageView(
+                    controller:_pageController,
+                    onPageChanged: (index){
+                      this.index = index;
+                    },
+                    children: myWidgets,
+                  )
                 ),
               ),
               Positioned(
@@ -94,7 +84,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   left: 133.w,
                   child: SmoothPageIndicator(
                     count: 4,
-                    controller: PageController(initialPage: index),
+                    controller: _pageController,
                     effect: SwapEffect(
                       dotHeight: 6.h,
                       dotWidth: 6.w,
@@ -102,7 +92,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       dotColor: const Color(0xFFF6F6F6),
                     ), // your// preferred effect
                     onDotClicked: (index) {
-                      _carouselController.jumpToPage(index);
+                      _pageController.jumpToPage(index);
                       // this.index = index;
                     },
                   )),
