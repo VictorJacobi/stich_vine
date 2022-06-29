@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interview_question/constants.dart';
 import 'package:interview_question/screens/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF781596),
+      backgroundColor: kDesignColor,
       body: Center(
         child: Image.asset('images/plain_stich.png'),
       ),
