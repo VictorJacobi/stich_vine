@@ -192,7 +192,7 @@ class _PersonalDataState extends State<PersonalData> {
                                   color: Colors.black,
                                   shape: BoxShape.circle
                               ),
-                            ),//stiches registration and welcome  screen ui
+                            ),//refactor: refactoring widgets into separate classes
                           ),
                           Text('Not selected'),
                         ],

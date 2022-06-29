@@ -4,6 +4,7 @@ import 'package:interview_question/screens/login_screen.dart';
 import 'package:interview_question/widgets/purple_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../widgets/carousel_widget.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -15,89 +16,22 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   int index = 0;
   final CarouselController _carouselController = CarouselController();
-  final List<Widget> myWidgets = [
-    Column(
-      children: [
-        Text(
-          'Join the best\n tailoring app',
-          style: TextStyle(
-              fontSize: 28.sp,
-              color: Colors.white,
-              fontWeight: FontWeight.w700),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 26.h),
-          child: Text('Take your tailoring to the next level\n with Stitch Vine',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white)),
-        ),
-      ],
+  final List<Widget> myWidgets = const [
+    CarouselWidget(
+      headerText: 'Join the best\n tailoring app',
+      labelText: 'Take your tailoring to the next level\n with Stitch Vine',
     ),
-    Column(
-      children: [
-        Text(
-          'Join the best\n tailoring app',
-          style: TextStyle(
-              fontSize: 28.sp,
-              color: Colors.white,
-              fontWeight: FontWeight.w700),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 26.h),
-          child: Text(
-              'Join the best\n tailoring app',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white)),
-        ),
-      ],
+    CarouselWidget(
+      headerText: 'Join the best\n tailoring app',
+      labelText: 'Take your tailoring to the next level\n with Stitch Vine',
     ),
-    Column(
-      children: [
-        Text(
-          'Join the best\n tailoring app',
-          style: TextStyle(
-              fontSize: 28.sp,
-              color: Colors.white,
-              fontWeight: FontWeight.w700),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 26.h),
-          child: Text(
-              'Join the best\n tailoring app',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white)),
-        ),
-      ],
+    CarouselWidget(
+      headerText: 'Join the best\n tailoring app',
+      labelText: 'Take your tailoring to the next level\n with Stitch Vine',
     ),
-    Column(
-      children: [
-        Text(
-          'Join the best\n tailoring app',
-          style: TextStyle(
-              fontSize: 28.sp,
-              color: Colors.white,
-              fontWeight: FontWeight.w700),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 26.h),
-          child: Text('Take your tailoring to the next level\n with Stitch Vine',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white),
-          ),
-        ),
-      ],
+    CarouselWidget(
+      headerText: 'Join the best\n tailoring app',
+      labelText: 'Take your tailoring to the next level\n with Stitch Vine',
     ),
   ];
   @override
@@ -106,7 +40,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('images/background_image.png'),
               fit: BoxFit.cover),
@@ -115,7 +49,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           padding: EdgeInsets.only(
               top: 392.h, bottom: 45.h, left: 28.w, right: 27.w),
           child: Stack(
-
             children: [
               Container(
                 color: Colors.white.withOpacity(0.38),
@@ -140,11 +73,21 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
               Positioned(
-                child: PurpleButton(height: 50.h,width: 230.w,text: 'Get started',fontWeight: FontWeight.w600,radius: 8.r,onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
-                },),
                 bottom: 88.h,
                 left: 45,
+                child: PurpleButton(
+                  height: 50.h,
+                  width: 230.w,
+                  text: 'Get started',
+                  fontWeight: FontWeight.w600,
+                  radius: 8.r,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()));
+                  },
+                ),
               ),
               Positioned(
                   bottom: 41.h,
@@ -155,7 +98,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     effect: SwapEffect(
                       dotHeight: 6.h,
                       dotWidth: 6.w,
-                      activeDotColor: Color(0xFF1D1F22),
+                      activeDotColor: const Color(0xFF1D1F22),
                       dotColor: const Color(0xFFF6F6F6),
                     ), // your// preferred effect
                     onDotClicked: (index) {
