@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:interview_question/widgets/created_textfield.dart';
 import 'package:interview_question/widgets/purple_button.dart';
+import '../widgets/drop_down_gender_widget.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -15,18 +16,18 @@ class SignUpScreen extends StatelessWidget {
           length: 2,
           child: Column(
             children: [
-              SignupAppBar(
+              const SignupAppBar(
                 title: 'New Customer',
               ),
               Padding(
                 padding: EdgeInsets.only(top: 24.h),
                 child: TabBar(
                     labelPadding: EdgeInsets.only(bottom: 10.h),
-                    indicatorColor: Color(0xFF781596),
+                    indicatorColor: const Color(0xFF781596),
                     indicatorWeight: 3.5,
-                    labelColor: Color(0xFF781596),
-                    unselectedLabelColor: Color(0xFF919197),
-                    labelStyle: TextStyle(
+                    labelColor: const Color(0xFF781596),
+                    unselectedLabelColor: const Color(0xFF919197),
+                    labelStyle: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),
@@ -34,20 +35,20 @@ class SignUpScreen extends StatelessWidget {
                       Text(
                         "PERSONAL DATA",
                         style: TextStyle(
-                            color: Color(0xFF781596),
+                            color: const Color(0xFF781596),
                             fontWeight: FontWeight.w500,
                             fontSize: 11.sp),
                       ),
                       Text(
                         "MEASUREMENT INFO",
                         style: TextStyle(
-                            color: Color(0xFF777777),
+                            color: const Color(0xFF777777),
                             fontWeight: FontWeight.w500,
                             fontSize: 11.sp),
                       )
                     ]),
               ),
-              Expanded(
+              const Expanded(
                 child: TabBarView(
                   children: [PersonalData(), MeasurementInfo()],
                 ),
@@ -104,14 +105,8 @@ class PersonalData extends StatefulWidget {
 
 class _PersonalDataState extends State<PersonalData> {
   final TextEditingController genderTextController = TextEditingController();
-  final List<String> items = ['Not specified', 'Male', 'Female'];
   int index = 0;
   bool showSelection = false;
-  DropdownMenuItem<String> buildDropDownMenuItem(String item) =>
-      DropdownMenuItem(
-        child: Text(item),
-        value: item,
-      );
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -130,8 +125,8 @@ class _PersonalDataState extends State<PersonalData> {
         Card(
           elevation: 0,
           child: TextField(
-            cursorColor: Color(0xFF781596),
-            style: TextStyle(color: Colors.black),
+            cursorColor: const Color(0xFF781596),
+            style: const TextStyle(color: Colors.black),
             controller: genderTextController,
             onTap: () {
               setState(() {
@@ -140,28 +135,28 @@ class _PersonalDataState extends State<PersonalData> {
             },
             decoration: InputDecoration(
               prefix: Padding(
-                padding:EdgeInsets.only(left: 10.w,right: 5.w),
+                padding: EdgeInsets.only(left: 10.w, right: 5.w),
                 child: Container(
                   height: 5.h,
                   width: 5.w,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    shape: BoxShape.circle
-                  ),
+                  decoration: const BoxDecoration(
+                      color: Colors.black, shape: BoxShape.circle),
                 ),
               ),
               label: Text(
                 'Gender',
                 style: TextStyle(
-                    color: Color(0xFF777777),
+                    color: const Color(0xFF777777),
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w400),
               ),
               contentPadding: EdgeInsets.only(left: 15.w),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFF000000).withOpacity(0.12), width: 1.0),
+                borderSide: BorderSide(
+                    color: const Color(0xFF000000).withOpacity(0.12),
+                    width: 1.0),
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFF781596), width: 1.0),
               ),
             ),
@@ -178,83 +173,24 @@ class _PersonalDataState extends State<PersonalData> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  InkWell(
-                    child: SizedBox(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(right: 5.w),
-                            child: Container(
-                              height: 5.h,
-                              width: 5.w,
-                              decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  shape: BoxShape.circle
-                              ),
-                            ),//refactor: refactoring widgets into separate classes
-                          ),
-                          Text('Not selected'),
-                        ],
-                      ),
-                      width: 300.w,
-                      height: 50.h,
-                    ),
+                  DropDownGenderWidget(
                     onTap: () {
                       genderTextController.text = 'Not selected';
                     },
+                    value: 'Not selected',
                   ),
-                  InkWell(
-                      child: SizedBox(
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(right: 5.w),
-                              child: Container(
-                                height: 5.h,
-                                width: 5.w,
-                                decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    shape: BoxShape.circle
-                                ),
-                              ),
-                            ),
-                            Text(
-                              'Male',
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                        width: 300.w,
-                        height: 50.h,
-                      ),
-                      onTap: () {
-                        genderTextController.text = 'Male';
-                      }),
-                  InkWell(
-                      child: SizedBox(
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(right: 5.w),
-                              child: Container(
-                                height: 5.h,
-                                width: 5.w,
-                                decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    shape: BoxShape.circle
-                                ),
-                              ),
-                            ),
-                            Text('Female'),
-                          ],
-                        ),
-                        width: 300.w,
-                        height: 50.h,
-                      ),
-                      onTap: () {
-                        genderTextController.text = 'Female';
-                      }),
+                  DropDownGenderWidget(
+                    onTap: () {
+                      genderTextController.text = 'Male';
+                    },
+                    value: 'Male',
+                  ),
+                  DropDownGenderWidget(
+                    onTap: () {
+                      genderTextController.text = 'Female';
+                    },
+                    value: 'Female',
+                  ),
                 ],
               ),
             ),
@@ -283,7 +219,7 @@ class _PersonalDataState extends State<PersonalData> {
           },
         ),
         Padding(
-          padding: EdgeInsets.only(top: 38.h,left: 13.w,right: 13.w),
+          padding: EdgeInsets.only(top: 38.h, left: 13.w, right: 13.w),
           child: PurpleButton(
             text: 'Next',
             fontWeight: FontWeight.w500,
@@ -306,23 +242,3 @@ class MeasurementInfo extends StatelessWidget {
     return Container();
   }
 }
-//SizedBox(
-//           child: Material(
-//             color: Colors.white,
-//             child: DropdownButton<String>(
-//               value: items[index],
-//               items: items.map(buildDropDownMenuItem).toList(),
-//               onChanged: (value){
-//                 setState((){
-//                   index = items.indexOf(value!);
-//                 });
-//               },
-//               isExpanded: true,
-//               elevation: 0,
-//               style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.w400),
-//               underline: SizedBox.shrink(),
-//               ),
-//           ),
-//           height: 50.h,
-//           width: 328.w,
-//         ),
