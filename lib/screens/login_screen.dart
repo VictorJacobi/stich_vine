@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Card(
                       elevation: 0.2,
                       child: TextField(
-                        obscureText: _isVisible ? false : true,
+                        obscureText: !_isVisible ? false : true,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(left: 15.w),
                             enabledBorder: OutlineInputBorder(
@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: kDesignColor, width: 2.0),
+                                  color: kDesignColor, width: 1.0),
                             ),
                             label: Text(
                               'Password',
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 });
                               },
                               child: Icon(
-                                _isVisible
+                                !_isVisible
                                     ? Icons.visibility
                                     : Icons.visibility_off,
                                 color: kDesignColor,

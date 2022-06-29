@@ -51,7 +51,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           child: Stack(
             children: [
               Container(
-                color: Colors.white.withOpacity(0.38),
+                color: Colors.white.withOpacity(0.3748),
                 child: Padding(
                   padding: EdgeInsets.only(top: 52.h),
                   child: CarouselSlider(
